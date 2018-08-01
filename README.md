@@ -15,6 +15,6 @@ $ thrash -f ~/path/to/lyrics.rock
 
 ## Flags
 
-* -f rockstar script to execute. default: ./main.rock
-* -r start a REPL.  (TODO)
-* -d debug output. Currently spits out tokens from the lexer.
+* `-f` rockstar script to execute. default: `./main.rock`
+* `-r` start a REPL.  (TODO)
+* `-d` debug output. Currently spits out tokens from the lexer.
