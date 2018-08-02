@@ -11,7 +11,7 @@ import (
 var mode Mode
 
 // Scan some source and return a slice of tokens
-func Scan(s *Source) []*token.Token {
+func Scan(s *Source) *token.List {
 	var tokens []*token.Token
 
 	mode = Statement
@@ -58,7 +58,7 @@ func Scan(s *Source) []*token.Token {
 		}
 	}
 
-	return tokens
+	return token.ListFromTokens(tokens)
 }
 
 // Skip whitespace and comments

@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/young-steveo/thrash/debugger"
 	"github.com/young-steveo/thrash/lexer"
 	"github.com/young-steveo/thrash/result"
 )
@@ -46,7 +45,7 @@ func file(path string) {
 	}
 	tokens := lexer.Scan(lexer.FromBytes(source))
 	if d {
-		debugger.PrintTokens(tokens)
+		tokens.Print()
 	}
 	os.Exit(int(0))
 }
