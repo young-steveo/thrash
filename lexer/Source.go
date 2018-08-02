@@ -31,14 +31,6 @@ func (s *Source) Retreat() byte {
 	return s.Data[s.Current-1]
 }
 
-// Match a byte and advance if matched.
-func (s *Source) Match(c byte) (byte, bool) {
-	if s.IsAtEnd() || s.Data[s.Current] != c {
-		return c, false
-	}
-	return s.Advance(), true
-}
-
 // Peek at the current byte
 func (s *Source) Peek() byte {
 	return s.PeekAt(0)
@@ -56,7 +48,7 @@ func (s *Source) PeekAt(position int) byte {
 // PeekSlice returns a slice of bytes from current to count
 func (s *Source) PeekSlice(count int) []byte {
 	offset := s.Current + count
-	if offset >= s.Length {
+	if offset > s.Length {
 		return []byte{byte(0)}
 	}
 	return s.Data[s.Current:offset]

@@ -41,6 +41,14 @@ func Scan(s *Source) *token.List {
 			firstWord = nil
 		case ',':
 			tokens = append(tokens, token.Create(token.Comma, []byte{c}, s.Line))
+		case '\'':
+			if s.Peek() == 's' && s.PeekAt(1) == ' ' {
+				lexeme := []byte{c, s.Advance()}
+				tokens = append(tokens, token.Create(token.Is, lexeme, s.Line))
+				if firstWord.Type == token.Identifier || firstWord.Type == token.Pronoun {
+					mode = Poetic
+				}
+			}
 		default:
 			t := scanWord(s)
 			tokens = append(tokens, t)
@@ -254,16 +262,13 @@ func scanPoeticNumber(s *Source, lexeme []byte) *token.Token {
 }
 
 func scanPoeticString(s *Source, lexeme []byte) *token.Token {
-	c := byte('\n')
-	if !s.IsAtEnd() {
-		c = s.Advance()
-	}
-	for c != '\n' || s.IsAtEnd() {
+	for !s.IsAtEnd() {
+		c := s.Advance()
+		if c == '\n' {
+			s.Retreat()
+			break
+		}
 		lexeme = append(lexeme, c)
-		c = s.Advance()
-	}
-	if c == '\n' {
-		s.Retreat()
 	}
 	mode = Statement
 	return token.Create(token.String, lexeme, s.Line)
