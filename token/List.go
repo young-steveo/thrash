@@ -1,17 +1,21 @@
 package token
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // List of tokens for the parser
 type List struct {
 	Tokens  []*Token
 	Start   int
 	Current int
+	Length  int
 }
 
 // ListFromTokens returns a list wrapper
 func ListFromTokens(t []*Token) *List {
-	return &List{Tokens: t, Start: 0, Current: 0}
+	return &List{Tokens: t, Start: 0, Current: 0, Length: len(t)}
 }
 
 // Print the list to STDOUT

@@ -17,7 +17,7 @@ func TestScanAssignPoeticNumber(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -31,7 +31,7 @@ func TestScanComment(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -49,7 +49,7 @@ func TestScanAssignPoeticString(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 2},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -63,7 +63,7 @@ func TestScanAssignNumber(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -77,7 +77,7 @@ func TestScanAssignLiteral(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -90,7 +90,7 @@ func TestStringLiteral(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 2},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -103,7 +103,7 @@ func TestUnterminatedString(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -122,7 +122,7 @@ func TestNewLines(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 3},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -169,7 +169,7 @@ func TestFunctions(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 7},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -186,7 +186,7 @@ func TestWhileContinue(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 2},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -203,7 +203,7 @@ func TestUntilBreak(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 2},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -215,7 +215,7 @@ func TestError(t *testing.T) {
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -228,7 +228,7 @@ func TestOwnershipAssignment(t *testing.T) {
 		&token.Token{Type: token.PoeticNumber, Lexeme: []byte(`got a gun.`), Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
 
@@ -241,6 +241,6 @@ func TestIgnore(t *testing.T) {
 		&token.Token{Type: token.PoeticNumber, Lexeme: []byte(`got a gun.`), Line: 1},
 	}
 	for i, tok := range expect {
-		assert.Equal(t, tok, tokens[i])
+		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
