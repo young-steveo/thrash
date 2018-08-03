@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/young-steveo/thrash/lexer"
+	"github.com/young-steveo/thrash/parser"
 	"github.com/young-steveo/thrash/result"
 )
 
@@ -45,7 +46,13 @@ func file(path string) {
 	}
 	tokens := lexer.Scan(lexer.FromBytes(source))
 	if d {
+		fmt.Println(`=== TOKENS ===`)
 		tokens.Print()
+	}
+	ast := parser.Parse(tokens)
+	if d {
+		fmt.Println(`=== AST ===`)
+		fmt.Println(ast)
 	}
 	os.Exit(int(0))
 }

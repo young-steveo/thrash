@@ -16,3 +16,7 @@ func Create(t Type, lexeme []byte, line int) *Token {
 func ErrorToken(msg string, line int) *Token {
 	return Create(Error, []byte(msg), line)
 }
+
+func (t *Token) String() string {
+	return string(t.Lexeme)
+}

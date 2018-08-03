@@ -18,3 +18,6 @@ $ thrash -f ~/path/to/lyrics.rock
 * `-f` rockstar script to execute. default: `./main.rock`
 * `-r` start a REPL.  (TODO)
 * `-d` debug output. Currently spits out tokens from the lexer.
+
+## Current Status
+I have finished the lexer and started the parser and AST.

@@ -32,3 +32,40 @@ func (l *List) Print() {
 		fmt.Printf("%02d %s\n", t.Type, t.Lexeme)
 	}
 }
+
+// IsAtEnd checks if the tokens are consumed.
+func (l *List) IsAtEnd() bool {
+	return l.Current == l.Length
+}
+
+// Advance Current and return the previous Token
+func (l *List) Advance() *Token {
+	l.Current++
+	return l.Tokens[l.Current-1]
+}
+
+// Peek at the current Token
+func (l *List) Peek() *Token {
+	return l.PeekAt(0)
+}
+
+// PeekAt a Token at position ahead of current
+func (l *List) PeekAt(position int) *Token {
+	offset := l.Current + position
+	if offset >= l.Length {
+		return nil
+	}
+	return l.Tokens[offset]
+}
+
+// Consume a token, or fail
+func (l *List) Consume(typ Type) error {
+	next := l.PeekAt(0).Type
+	if next == typ || next == EOF {
+		l.Advance()
+		return nil
+	}
+
+	// @todo make this explain what was expected with a lookup.
+	return errors.New(`Expected a different token type`)
+}
