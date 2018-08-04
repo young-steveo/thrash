@@ -14,5 +14,8 @@ type Assignment struct {
 }
 
 func (a *Assignment) String() string {
-	return fmt.Sprintf(`Assignment: %s %s %s`, a.Left, a.Op, a.Right)
+	level++
+	result := fmt.Sprintf("Assignment:\n%sLeft: %s\n%sRight: %s", indent(), a.Left, indent(), a.Right)
+	level--
+	return result
 }

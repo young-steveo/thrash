@@ -7,8 +7,8 @@ import (
 	"github.com/young-steveo/thrash/token"
 )
 
-// Assignment infix parser
-func Assignment(left ast.Expression, t *token.Token, l *token.List) ast.Expression {
+// Is infix parser
+func Is(left ast.Expression, t *token.Token, l *token.List) ast.Expression {
 	right, err := parseExpression(l, ASSIGNMENT)
 	if err != nil {
 		fmt.Print(`Failed parsing right hand assignment expression.`)

@@ -62,6 +62,7 @@ var Keywords = map[string]Type{
 	`xem`:        Pronoun,
 	`ve`:         Pronoun,
 	`ver`:        Pronoun,
+	`say`:        Say,
 	`shout`:      Say,
 	`whisper`:    Say,
 	`scream`:     Say,
@@ -78,4 +79,6 @@ var Keywords = map[string]Type{
 	`while`:      While,
 	`until`:      While,
 	`up`:         Up,
+	`put`:        Put,
+	`into`:       Into,
 }

@@ -34,6 +34,8 @@ const (
 	Not          // Comparison invert `is not`
 	Aint         // `is not` alias
 	Is           // Poetic Literal assignment // aliases was, were
+	Put          // Assignment
+	Into         // Assignment
 	Says         // Poetic String Literal assignment
 	While        // Loop, alias Until
 	Break        // alias: Break it down

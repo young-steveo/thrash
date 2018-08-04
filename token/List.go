@@ -60,8 +60,8 @@ func (l *List) PeekAt(position int) *Token {
 
 // Consume a token, or fail
 func (l *List) Consume(typ Type) error {
-	next := l.PeekAt(0).Type
-	if next == typ || next == EOF {
+	next := l.PeekAt(0)
+	if next != nil && (next.Type == typ || next.Type == EOF) {
 		l.Advance()
 		return nil
 	}

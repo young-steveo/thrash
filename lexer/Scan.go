@@ -41,6 +41,10 @@ func Scan(s *Source) *token.List {
 			firstWord = nil
 		case ',':
 			tokens = append(tokens, token.Create(token.Comma, []byte{c}, s.Line))
+		case '.':
+		case '!':
+		case '?':
+			// ignore punctuation
 		case '\'':
 			if s.Peek() == 's' && s.PeekAt(1) == ' ' {
 				lexeme := []byte{c, s.Advance()}

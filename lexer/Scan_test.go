@@ -67,14 +67,34 @@ func TestScanAssignNumber(t *testing.T) {
 	}
 }
 
-func TestScanAssignLiteral(t *testing.T) {
-	source := FromBytes([]byte(`My Heart is empty`))
+func TestScanAssignPoeticLiteral(t *testing.T) {
+	source := FromBytes([]byte(`My Heart is empty!`))
 	tokens := Scan(source)
 	expect := []*token.Token{
 		&token.Token{Type: token.Identifier, Lexeme: []byte(`My Heart`), Line: 1},
 		&token.Token{Type: token.Is, Lexeme: []byte(`is`), Line: 1},
 		&token.Token{Type: token.Null, Lexeme: []byte(`empty`), Line: 1},
 		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
+	}
+	for i, tok := range expect {
+		assert.Equal(t, tok, tokens.Tokens[i])
+	}
+}
+
+func TestAssignment(t *testing.T) {
+	source := FromBytes([]byte("Put true into my heart?\nPut my heart into your hands."))
+	tokens := Scan(source)
+	expect := []*token.Token{
+		&token.Token{Type: token.Put, Lexeme: []byte(`Put`), Line: 1},
+		&token.Token{Type: token.True, Lexeme: []byte(`true`), Line: 1},
+		&token.Token{Type: token.Into, Lexeme: []byte(`into`), Line: 1},
+		&token.Token{Type: token.Identifier, Lexeme: []byte(`my heart`), Line: 1},
+		&token.Token{Type: token.Newline, Lexeme: []byte{'\n'}, Line: 1},
+		&token.Token{Type: token.Put, Lexeme: []byte(`Put`), Line: 2},
+		&token.Token{Type: token.Identifier, Lexeme: []byte(`my heart`), Line: 2},
+		&token.Token{Type: token.Into, Lexeme: []byte(`into`), Line: 2},
+		&token.Token{Type: token.Identifier, Lexeme: []byte(`your hands`), Line: 2},
+		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 2},
 	}
 	for i, tok := range expect {
 		assert.Equal(t, tok, tokens.Tokens[i])
