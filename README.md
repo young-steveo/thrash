@@ -4,6 +4,8 @@
 
 So far I've handwritten a Lexer that's mostly complete.  An AST parser is next, then I'll spit out some bytecode and write a simple VM to consume it.
 
+**NOTE:** The Rockstar spec is very young and constantly changing.  This implementation may not always match the current spec until things settle down.
+
 ## Installation
 
 ```bash
