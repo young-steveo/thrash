@@ -22,6 +22,7 @@ func init() {
 
 	infixParsers = make(map[token.Type]Infix)
 	infixParsers[token.Is] = Is
+	infixParsers[token.Equality] = Equality
 	infixParsers[token.Greater] = Greater
 	infixParsers[token.Less] = Less
 	infixParsers[token.Plus] = Plus

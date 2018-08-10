@@ -34,8 +34,11 @@ func parseStatement(l *token.List) (ast.Expression, error) {
 
 func parseExpression(l *token.List, pre Precedence) (ast.Expression, error) {
 	t := l.Advance()
-	if t.Type == token.EOF {
+	switch t.Type {
+	case token.EOF:
 		return nil, nil
+	case token.Error:
+		return nil, fmt.Errorf(`%s`, string(t.Lexeme))
 	}
 	var left ast.Expression
 	p, ok := prefixParsers[t.Type]

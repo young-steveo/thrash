@@ -9,13 +9,9 @@ import (
 )
 
 func TestConditionGreater(t *testing.T) {
-	source := lexer.FromBytes([]byte("If Tommy is greater than you\n"))
+	source := lexer.FromBytes([]byte("If Tommy is greater than Janice\n"))
 	tokens := lexer.Scan(source)
 
 	ifExpr := If(tokens.Advance(), tokens)
-	assert.Equal(t, "If: true", ifExpr.String())
-
-	// tommy := Identifier(tokens.Advance(), tokens)
-	// program := Greater(tommy, tokens.Advance(), tokens)
-	// assert.Equal(t, "Boolean: true", program.String())
+	assert.Equal(t, "If: Comparison:\n        Left: Identifier: Tommy\n        Op: greater\n        Right: Identifier: Janice\n    ", ifExpr.String())
 }

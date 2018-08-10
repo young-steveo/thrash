@@ -11,12 +11,12 @@ import (
 func Greater(left ast.Expression, t *token.Token, l *token.List) ast.Expression {
 	err := l.Consume(token.Than)
 	if err != nil {
-		fmt.Printf(`Expected "than" after "%s" but saw "%s"`, t.Lexeme, l.Peek().Lexeme)
+		fmt.Printf(`Expected "than" after "%s" but saw "%s"\n`, t.Lexeme, l.Peek().Lexeme)
 		return nil
 	}
 	right, err := parseExpression(l, COMPARISON)
 	if err != nil {
-		fmt.Print(`Failed parsing right hand Greater expression.`)
+		fmt.Printf("Failed parsing right hand Greater expression: %s\n", err.Error())
 		return nil
 	}
 	return &ast.Comparison{Left: left, Op: t, Right: right}

@@ -12,7 +12,7 @@ func Equality(left ast.Expression, t *token.Token, l *token.List) ast.Expression
 	next := l.Peek()
 	switch next.Type {
 	case token.Greater:
-		return Greater(left, next, l)
+		return Greater(left, l.Advance(), l)
 	case token.GreaterEqual:
 	case token.Less:
 	case token.LessEqual:
