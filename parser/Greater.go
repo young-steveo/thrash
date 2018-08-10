@@ -11,7 +11,7 @@ import (
 func Greater(left ast.Expression, t *token.Token, l *token.List) ast.Expression {
 	err := l.Consume(token.Than)
 	if err != nil {
-		fmt.Printf(`Expected "than" after "%s"`, t.Lexeme)
+		fmt.Printf(`Expected "than" after "%s" but saw "%s"`, t.Lexeme, l.Peek().Lexeme)
 		return nil
 	}
 	right, err := parseExpression(l, COMPARISON)

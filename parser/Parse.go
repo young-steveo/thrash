@@ -24,7 +24,7 @@ func Parse(l *token.List) ast.Expression {
 }
 
 func parseStatement(l *token.List) (ast.Expression, error) {
-	expr, err := parseExpression(l, 0)
+	expr, err := parseExpression(l, DEFAULT)
 	if err != nil {
 		return nil, err
 	}
@@ -43,6 +43,10 @@ func parseExpression(l *token.List, pre Precedence) (ast.Expression, error) {
 		return nil, fmt.Errorf(`unknown prefix parser for token %s`, string(t.Lexeme))
 	}
 	left = p(t, l)
+
+	if left == nil {
+		return nil, fmt.Errorf(`could not parse prefix for "%s"`, string(t.Lexeme))
+	}
 
 	next := l.Peek()
 	i, ok := infixParsers[next.Type]

@@ -2,6 +2,7 @@ package parser
 
 import (
 	"bytes"
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -19,10 +20,10 @@ func PoeticNumber(t *token.Token, l *token.List) ast.Expression {
 		index--
 		digits[index] = strconv.Itoa(len(words[index]) % 10)
 	}
-	number := &token.Token{
-		Type:   token.Number,
-		Lexeme: []byte(strings.Join(digits, ``)),
-		Line:   t.Line,
+	value, err := strconv.ParseFloat(strings.Join(digits, ``), 64)
+	if err != nil {
+		fmt.Println(`Could not parse digits.`)
+		return nil
 	}
-	return &ast.Number{Token: number}
+	return &ast.Number{Token: t, Value: value}
 }

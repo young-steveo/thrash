@@ -55,15 +55,21 @@ func Scan(s *Source) *token.List {
 			}
 		default:
 			t := scanWord(s)
-			tokens = append(tokens, t)
 			switch t.Type {
 			case token.Is:
-				if firstWord.Type == token.Identifier || firstWord.Type == token.Pronoun {
+				switch firstWord.Type {
+				case token.Identifier:
 					mode = Poetic
+				case token.Pronoun:
+					mode = Poetic
+				case token.If:
+					// scanning a conditional statement, so need to change type to equality
+					t.Type = token.Equality
 				}
 			case token.Says:
 				mode = PoeticString
 			}
+			tokens = append(tokens, t)
 		}
 		if firstWord == nil || firstWord.Type == token.Newline {
 			firstWord = tokens[len(tokens)-1]

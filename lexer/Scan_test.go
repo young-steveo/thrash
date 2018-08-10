@@ -181,7 +181,7 @@ func TestFunctions(t *testing.T) {
 		&token.Token{Type: token.Identifier, Lexeme: []byte(`My World`), Line: 6},
 		&token.Token{Type: token.Comma, Lexeme: []byte(`,`), Line: 6},
 		&token.Token{Type: token.Identifier, Lexeme: []byte(`The Fire`), Line: 6},
-		&token.Token{Type: token.Is, Lexeme: []byte(`is`), Line: 6},
+		&token.Token{Type: token.Equality, Lexeme: []byte(`is`), Line: 6},
 		&token.Token{Type: token.Identifier, Lexeme: []byte(`My World`), Line: 6},
 		&token.Token{Type: token.Newline, Lexeme: []byte{'\n'}, Line: 6},
 		&token.Token{Type: token.Say, Lexeme: []byte(`Shout`), Line: 7},
@@ -259,6 +259,23 @@ func TestIgnore(t *testing.T) {
 		&token.Token{Type: token.Identifier, Lexeme: []byte(`Janie'saurus`), Line: 1},
 		&token.Token{Type: token.Is, Lexeme: []byte(`'s`), Line: 1},
 		&token.Token{Type: token.PoeticNumber, Lexeme: []byte(`got a gun.`), Line: 1},
+	}
+	for i, tok := range expect {
+		assert.Equal(t, tok, tokens.Tokens[i])
+	}
+}
+
+func TestGreaterCondition(t *testing.T) {
+	source := FromBytes([]byte(`If Janie is greater than him`))
+	tokens := Scan(source)
+	expect := []*token.Token{
+		&token.Token{Type: token.If, Lexeme: []byte(`If`), Line: 1},
+		&token.Token{Type: token.Identifier, Lexeme: []byte(`Janie`), Line: 1},
+		&token.Token{Type: token.Equality, Lexeme: []byte(`is`), Line: 1},
+		&token.Token{Type: token.Greater, Lexeme: []byte(`greater`), Line: 1},
+		&token.Token{Type: token.Than, Lexeme: []byte(`than`), Line: 1},
+		&token.Token{Type: token.Pronoun, Lexeme: []byte(`him`), Line: 1},
+		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
 	}
 	for i, tok := range expect {
 		assert.Equal(t, tok, tokens.Tokens[i])

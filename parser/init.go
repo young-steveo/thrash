@@ -31,6 +31,7 @@ func init() {
 
 	infixPrecedence = make(map[token.Type]Precedence)
 	infixPrecedence[token.Is] = ASSIGNMENT
+	infixPrecedence[token.Equality] = EQUALITY
 	infixPrecedence[token.Greater] = COMPARISON
 	infixPrecedence[token.Less] = COMPARISON
 	infixPrecedence[token.Plus] = TERM

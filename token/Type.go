@@ -26,6 +26,7 @@ const (
 	Than         // terminates Greater / Less
 	GreaterEqual // High, Great, Big, Strong
 	LessEqual    // low, little, small, weak
+	Equality     // is
 	As           // starts and terminates greater than or equal to
 	Listen       // STDIN
 	Say          // STDOUT, alias shout, whisper, scream
