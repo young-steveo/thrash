@@ -180,6 +180,10 @@ func scanWord(s *Source) *token.Token {
 			lexeme = scanSuffix(s, lexeme, []byte(` it to the top`))
 			return token.Create(token.Continue, lexeme, s.Line)
 		}
+		if token.IsListen(lexeme) {
+			lexeme = scanSuffix(s, lexeme, []byte(` to`))
+			return token.Create(token.Listen, lexeme, s.Line)
+		}
 		if token.IsGive(lexeme) {
 			lexeme = scanSuffix(s, lexeme, []byte(` back`))
 			return token.Create(token.Return, lexeme, s.Line)

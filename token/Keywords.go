@@ -33,7 +33,6 @@ var Keywords = map[string]Type{
 	`little`:     LessEqual,
 	`small`:      LessEqual,
 	`weak`:       LessEqual,
-	`listen`:     Listen,
 	`minus`:      Minus,
 	`without`:    Minus,
 	`mysterious`: Mysterious,

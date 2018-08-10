@@ -281,3 +281,16 @@ func TestGreaterCondition(t *testing.T) {
 		assert.Equal(t, tok, tokens.Tokens[i])
 	}
 }
+
+func TestScanListenTo(t *testing.T) {
+	source := FromBytes([]byte(`Listen to your heart`))
+	tokens := Scan(source)
+	expect := []*token.Token{
+		&token.Token{Type: token.Listen, Lexeme: []byte(`Listen to`), Line: 1},
+		&token.Token{Type: token.Identifier, Lexeme: []byte(`your heart`), Line: 1},
+		&token.Token{Type: token.EOF, Lexeme: []byte{byte(0)}, Line: 1},
+	}
+	for i, tok := range expect {
+		assert.Equal(t, tok, tokens.Tokens[i])
+	}
+}
