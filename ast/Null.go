@@ -14,3 +14,8 @@ type Null struct {
 func (n *Null) String() string {
 	return fmt.Sprintf(`Null: %s`, n.Token)
 }
+
+// Source fulfils the Expression interface
+func (n *Null) Source() []byte {
+	return n.Token.Lexeme
+}

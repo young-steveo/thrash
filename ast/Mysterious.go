@@ -14,3 +14,8 @@ type Mysterious struct {
 func (m *Mysterious) String() string {
 	return fmt.Sprint(`Mysterious`)
 }
+
+// Source fulfils the Expression interface
+func (m *Mysterious) Source() []byte {
+	return m.Token.Lexeme
+}

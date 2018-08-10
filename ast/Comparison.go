@@ -19,3 +19,8 @@ func (c *Comparison) String() string {
 	level--
 	return result
 }
+
+// Source fulfils the Expression interface
+func (c *Comparison) Source() []byte {
+	return concatBytes(c.Left.Source(), c.Op.Lexeme, c.Right.Source())
+}

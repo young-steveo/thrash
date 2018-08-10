@@ -14,3 +14,8 @@ type Boolean struct {
 func (b *Boolean) String() string {
 	return fmt.Sprintf(`Boolean: %s`, b.Token)
 }
+
+// Source fulfils the Expression interface
+func (b *Boolean) Source() []byte {
+	return b.Token.Lexeme
+}

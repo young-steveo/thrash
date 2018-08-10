@@ -19,3 +19,8 @@ func (a *Arithmetic) String() string {
 	level--
 	return result
 }
+
+// Source fulfils the Expression interface
+func (a *Arithmetic) Source() []byte {
+	return concatBytes(a.Left.Source(), a.Op.Lexeme, a.Right.Source())
+}

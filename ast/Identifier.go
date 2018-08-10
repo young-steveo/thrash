@@ -14,3 +14,8 @@ type Identifier struct {
 func (i *Identifier) String() string {
 	return fmt.Sprintf(`Identifier: %s`, i.Token)
 }
+
+// Source fulfils the Expression interface
+func (i *Identifier) Source() []byte {
+	return i.Token.Lexeme
+}

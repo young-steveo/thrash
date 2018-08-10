@@ -12,3 +12,8 @@ type Print struct {
 func (p *Print) String() string {
 	return fmt.Sprintf(`Print: %s`, p.Expression)
 }
+
+// Source fulfils the Expression interface
+func (p *Print) Source() []byte {
+	return concatBytes([]byte(`print`), []byte{}, p.Expression.Source())
+}

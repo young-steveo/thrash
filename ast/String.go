@@ -14,3 +14,8 @@ type String struct {
 func (s *String) String() string {
 	return fmt.Sprintf(`String: "%s"`, s.Token)
 }
+
+// Source fulfils the Expression interface
+func (s *String) Source() []byte {
+	return s.Token.Lexeme
+}

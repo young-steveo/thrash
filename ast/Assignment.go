@@ -19,3 +19,8 @@ func (a *Assignment) String() string {
 	level--
 	return result
 }
+
+// Source fulfils the Expression interface
+func (a *Assignment) Source() []byte {
+	return concatBytes(a.Left.Source(), a.Op.Lexeme, a.Right.Source())
+}

@@ -14,3 +14,8 @@ type Pronoun struct {
 func (p *Pronoun) String() string {
 	return fmt.Sprintf(`Pronoun: %s`, p.Token)
 }
+
+// Source fulfils the Expression interface
+func (p *Pronoun) Source() []byte {
+	return p.Token.Lexeme
+}

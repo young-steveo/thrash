@@ -21,3 +21,12 @@ func (b *Block) String() string {
 	}
 	return strings.Join(result, "\n")
 }
+
+// Source fulfils the Expression interface
+func (b *Block) Source() []byte {
+	result := make([]byte, 0)
+	for _, line := range b.Expressions {
+		result = concatBytes(result, line.Source(), []byte("\n"))
+	}
+	return concatBytes(result, []byte("\n"), []byte{})
+}
