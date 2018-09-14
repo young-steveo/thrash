@@ -26,7 +26,20 @@ func If(t *token.Token, l *token.List) ast.Expression {
 	parsingCondition = false
 	block := Block(l.Peek(), l)
 
-	// @todo else condition
+	next := l.Peek()
+	if next != nil && next.Type == token.Else {
+		err = l.Consume(token.Else)
+		if err != nil {
+			fmt.Printf("Expected new line after if expression, but saw \"%s\"\n", l.Peek().Lexeme)
+			return nil
+		}
+		err = l.Consume(token.Newline)
+		if err != nil {
+			fmt.Printf("Expected new line after if expression, but saw \"%s\"\n", l.Peek().Lexeme)
+			return nil
+		}
+		return &ast.Condition{Expression: expr, Block: block, Else: Block(l.Peek(), l)}
+	}
 
 	return &ast.Condition{Expression: expr, Block: block}
 }

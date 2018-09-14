@@ -10,6 +10,7 @@ func init() {
 	prefixParsers = make(map[token.Type]Prefix)
 	prefixParsers[token.False] = Boolean
 	prefixParsers[token.Identifier] = Identifier
+	prefixParsers[token.Listen] = Listen
 	prefixParsers[token.Mysterious] = Mysterious
 	prefixParsers[token.Null] = Null
 	prefixParsers[token.Number] = Number
@@ -22,6 +23,7 @@ func init() {
 
 	infixParsers = make(map[token.Type]Infix)
 	infixParsers[token.Is] = Is
+	infixParsers[token.Says] = Is
 	infixParsers[token.Equality] = Equality
 	infixParsers[token.Greater] = Greater
 	infixParsers[token.Less] = Less

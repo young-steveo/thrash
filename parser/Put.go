@@ -9,17 +9,17 @@ import (
 
 // Put prefix parser
 func Put(t *token.Token, l *token.List) ast.Expression {
-	right, err := parseExpression(l, 0)
+	right, err := parseExpression(l, DEFAULT)
 	if err != nil {
-		fmt.Print(`Failed parsing value for assignment expression`)
+		fmt.Println(`Failed parsing value for assignment expression`)
 		return nil
 	}
 
 	l.Consume(token.Into)
 
-	left, err := parseExpression(l, 0)
+	left, err := parseExpression(l, DEFAULT)
 	if err != nil {
-		fmt.Print(`Failed parsing identifier for assignment expression`)
+		fmt.Println(`Failed parsing identifier for assignment expression`)
 		return nil
 	}
 

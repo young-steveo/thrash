@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/young-steveo/thrash/lexer"
@@ -31,7 +33,20 @@ func main() {
 }
 
 func repl() {
-	// todo
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print(`🤘 `)
+	for scanner.Scan() {
+		source := lexer.FromBytes(scanner.Bytes())
+		tokens := lexer.Scan(source)
+		program := parser.Parse(tokens)
+		fmt.Println(program)
+		fmt.Print(`🤘 `)
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Println(err)
+		os.Exit(1)
+	}
 }
 
 func file(path string) {

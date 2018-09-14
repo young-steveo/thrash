@@ -20,5 +20,11 @@ func Block(t *token.Token, l *token.List) ast.Expression {
 			block.Expressions = append(block.Expressions, expr)
 		}
 	}
+	if !l.IsAtEnd() {
+		l.Consume(token.Newline)
+		if !l.IsAtEnd() {
+			l.Consume(token.Newline)
+		}
+	}
 	return block
 }
